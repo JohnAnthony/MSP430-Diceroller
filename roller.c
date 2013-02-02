@@ -29,6 +29,7 @@ int main(void) {
     while (1) {
         P1OUT = DICE_DISPLAYS[dicevalue];
 
+        /* Literally just roll around the values to show each is correct */
         dicevalue++;
         if (dicevalue >= LENGTH(DICE_DISPLAYS))
             dicevalue = 0;
