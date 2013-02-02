@@ -2,7 +2,7 @@
 
 #define LENGTH(x) (sizeof(x) / sizeof(x[0]))
 
-static unsigned int DICE_VALUE;
+static unsigned int DICE_VALUE = 0;
 static unsigned int DICE_DISPLAYS[] = {
     BIT3,                                       /* One */
     BIT1 | BIT5,                                /* Two */
@@ -32,13 +32,11 @@ int main(void) {
     WDTCTL = WDTPW + WDTHOLD;
     P1DIR  = BIT0 | BIT1 | BIT2 | BIT3 | BIT4 | BIT5 | BIT6;
 
-    p1values = 0;    /* Initially don't show anything until a roll is made */
-    DICE_VALUE = -1; /* This way it wraps immediately and starts at a value of
-                       1 when the button is first pressed */
+    P1OUT = 0;       /* Initially don't show anything until a roll is made */
     while (1) {
         while (!(P1IN & BIT7)) {
             P1OUT = p1values = dice_inc();
-            wait(0x2fff);
+            wait(0x2000);
         }
     }
 }
