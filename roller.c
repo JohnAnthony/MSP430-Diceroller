@@ -2,6 +2,7 @@
 
 #define LENGTH(x) (sizeof(x) / sizeof(x[0]))
 
+static unsigned int DICE_VALUE;
 static unsigned int DICE_DISPLAYS[] = {
     BIT3,                                       /* One */
     BIT1 | BIT5,                                /* Two */
@@ -11,29 +12,34 @@ static unsigned int DICE_DISPLAYS[] = {
     BIT0 | BIT1 | BIT2 | BIT4 | BIT5 | BIT6     /* Six */
 };
 
+static unsigned int dice_inc(void) {
+    DICE_VALUE++;
+    if (DICE_VALUE >= LENGTH(DICE_DISPLAYS))
+        DICE_VALUE = 0;
+    return DICE_DISPLAYS[DICE_VALUE];
+}
+
 /* Busy wait */
 /* TODO: Use signals */
-void wait(unsigned int d) {
+static void wait(unsigned int d) {
     for (; d>0; d--)
         nop();
 }
 
 int main(void) {
-    int dicevalue;
+    int p1values;
 
     WDTCTL = WDTPW + WDTHOLD;
     P1DIR  = BIT0 | BIT1 | BIT2 | BIT3 | BIT4 | BIT5 | BIT6;
-    P2DIR  = 0x01;
 
-    dicevalue = 0;
+    p1values = 0;    /* Initially don't show anything until a roll is made */
+    DICE_VALUE = -1; /* This way it wraps immediately and starts at a value of
+                       1 when the button is first pressed */
     while (1) {
-        P1OUT = DICE_DISPLAYS[dicevalue];
+        P1OUT = p1values;
+        p1values = dice_inc();
 
-        /* Literally just roll around the values to show each is correct */
-        dicevalue++;
-        if (dicevalue >= LENGTH(DICE_DISPLAYS))
-            dicevalue = 0;
-
+        wait(0xffff);
         wait(0xffff);
         wait(0xffff);
         wait(0xffff);
