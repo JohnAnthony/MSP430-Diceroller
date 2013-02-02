@@ -20,3 +20,6 @@ all: $(OBJECTS)
 
 clean:
 	rm roller.a43 roller.lst roller.elf $(OBJECTS)
+
+install:
+	echo -e "erase\n load roller.elf\n exit" | sudo mspdebug rf2500

@@ -36,12 +36,9 @@ int main(void) {
     DICE_VALUE = -1; /* This way it wraps immediately and starts at a value of
                        1 when the button is first pressed */
     while (1) {
-        P1OUT = p1values;
-        p1values = dice_inc();
-
-        wait(0xffff);
-        wait(0xffff);
-        wait(0xffff);
-        wait(0xffff);
+        while (!(P1IN & BIT7)) {
+            P1OUT = p1values = dice_inc();
+            wait(0x2fff);
+        }
     }
 }
