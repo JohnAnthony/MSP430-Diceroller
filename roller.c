@@ -1,42 +1,64 @@
 #include <msp430g2211.h>
+#include <stdint.h>
 
 #define LENGTH(x) (sizeof(x) / sizeof(x[0]))
+#define SWITCH BIT0
 
-/* How to display the individual results */
-#define DICE_1 BIT3
-#define DICE_2 BIT1 | BIT5
-#define DICE_3 BIT1 | BIT3 | BIT5
-#define DICE_4 BIT0 | BIT1 | BIT5 | BIT6
-#define DICE_5 BIT0 | BIT1 | BIT3 | BIT5 | BIT6
-#define DICE_6 BIT0 | BIT1 | BIT2 | BIT4 | BIT5 | BIT6
-/* The order in which to display the results */
-static unsigned int DICE_DISPLAYS[] = {
-    DICE_1, DICE_2, DICE_3, DICE_4, DICE_5, DICE_6
-};
+static void display_init(void) {
+    P1DIR  = BIT1 | BIT2 | BIT3 | BIT4 | BIT5 | BIT6 | BIT7;
+}
 
-/* Busy wait */
-/* TODO: Use a proper timer wait */
-static void wait(unsigned int d) {
+static void roll_die(void) {
+    /* Dice rolls 1 to 6 and index, 'n'*/
+    static const uint8_t dice_displays[] = {
+        BIT4,
+        BIT3 | BIT5,
+        BIT3 | BIT4 | BIT5,
+        BIT1 | BIT3 | BIT5 | BIT7,
+        BIT1 | BIT3 | BIT4 | BIT5 | BIT7,
+        BIT1 | BIT2 | BIT3 | BIT5 | BIT6 | BIT7
+    }; 
+    uint16_t n;
+    /* "Thumper" aka waiting display and index 'i' */
+    static const uint8_t thump_displays[] = {
+        BIT5,
+        BIT6,
+        BIT7,
+        BIT3,
+        BIT2,
+        BIT1
+    };
+    uint16_t i;
+
+    for (n = 0, i = 0; (P1IN & SWITCH) == 0; ++n) {
+        if (n == 6000) {
+            n = 0;
+            i += 1;
+            if (i >= LENGTH(thump_displays))
+                i = 0;
+            P1OUT = thump_displays[i];
+        }
+    }
+
+    n %= LENGTH(dice_displays);
+    P1OUT = dice_displays[n];
+}
+
+static void wait(uint16_t d) {
     for (; d>0; d--)
         nop();
 }
 
 int main(void) {
-    unsigned int dice;
-
     WDTCTL = WDTPW + WDTHOLD;
-    P1DIR  = BIT0 | BIT1 | BIT2 | BIT3 | BIT4 | BIT5 | BIT6;
+    display_init();
 
-    dice = 0;
-    P1OUT = 0;       /* Initially don't show anything until a roll is made */
+    /* Initially don't show anything until a roll is made */
+    P1OUT = 0;       
+
     while (1) {
-        while (!(P1IN & BIT7)) {
-            dice++;
-            if (dice >= LENGTH(DICE_DISPLAYS))
-                dice = 0;
-            P1OUT = DICE_DISPLAYS[dice];
-            wait(0x2000);
-        }
-        wait(0x8000);
+        if ((P1IN & SWITCH) == 0)
+            roll_die();
+        // wait(0x700);
     }
 }
