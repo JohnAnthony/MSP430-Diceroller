@@ -3,13 +3,12 @@
 #define LENGTH(x) (sizeof(x) / sizeof(x[0]))
 
 /* How to display the individual results */
-static unsigned int DICE_1 = BIT3;
-static unsigned int DICE_2 = BIT1 | BIT5;
-static unsigned int DICE_3 = BIT1 | BIT3 | BIT5;
-static unsigned int DICE_4 = BIT0 | BIT1 | BIT5 | BIT6;
-static unsigned int DICE_5 = BIT0 | BIT1 | BIT3 | BIT5 | BIT6;
-static unsigned int DICE_6 = BIT0 | BIT1 | BIT2 | BIT4 | BIT5 | ;
-
+#define DICE_1 BIT3
+#define DICE_2 BIT1 | BIT5
+#define DICE_3 BIT1 | BIT3 | BIT5
+#define DICE_4 BIT0 | BIT1 | BIT5 | BIT6
+#define DICE_5 BIT0 | BIT1 | BIT3 | BIT5 | BIT6
+#define DICE_6 BIT0 | BIT1 | BIT2 | BIT4 | BIT5 | BIT6
 /* The order in which to display the results */
 static unsigned int DICE_DISPLAYS[] = {
     DICE_1, DICE_2, DICE_3, DICE_4, DICE_5, DICE_6
@@ -23,7 +22,6 @@ static void wait(unsigned int d) {
 }
 
 int main(void) {
-    unsigned int p1values;
     unsigned int dice;
 
     WDTCTL = WDTPW + WDTHOLD;
@@ -36,7 +34,7 @@ int main(void) {
             dice++;
             if (dice >= LENGTH(DICE_DISPLAYS))
                 dice = 0;
-            P1OUT = DICE_DISPLAY[dice];
+            P1OUT = DICE_DISPLAYS[dice];
             wait(0x2000);
         }
         wait(0x8000);
