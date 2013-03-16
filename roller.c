@@ -103,7 +103,7 @@ roll_die(void) {
          * is our pretty display that flashes around while the button
          * is held down
          */
-        if (n % 6000 == 0) {
+        if (n % 600 == 0) {
             i += 1;
             if (i >= LENGTH(thump_displays))
                 i = 0;
