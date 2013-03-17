@@ -105,8 +105,8 @@ OK, so, time to take a proper look at this chip. If you didn't download the chip
 
 Take your time to peruse this and pick up as much information as you can. What we're really interested in, though, is what's detailed on page 4 - information about the device's pins. To orientate your chip with this diagram, place the chip down with the notch/groove facing towards the top of the page. You will also notice that the pin numbering starts at the top-left and goes anti-clockwise. We are interested only in the pin designations by port for now. Make a mental note of which pins the following ports are on:
 
-    DVCC (This is connected to the negative side of our power supply)
-    DVSS (This is connected to the positive side of our power supply)
+    DVCC (This is connected to the positive side of our power supply)
+    DVSS (This is connected to the negative side of our power supply)
     P1.0 (We use this for our switch)
     P1.1 (Used to light LED1)
     P1.2 (Used to light LED2)
@@ -125,9 +125,9 @@ OK, so, lets get this thing attached to some power and prevent it from resetting
 
 Leave the batteries/power supply off for now - you'll just end up shorting it or some component and causing damage if you attach it this early. Place your chip over a channel in your breadboard somewhere around the middle or slightly offset towards the power supply end. Attach a wire to DVCC and your positive power rail. Do the same with DVSS and your ground (that's the negative power rail). When you attach your power supply your chip will now receive power.
 
-Bridge your positive and ground power rails with your capacitor. The long leg or the capacitor goes on the positive side and the negative side is marked with a stripe on the capacitor body's casing. The reason you're doing this? Capacitors store energy and help prevent spikes nd brown outs and this means such things have a much lower chance of damaging your chip. Think of it as a reservoir that fills up in the rainy season and releases what it has in times of drought to keep your water supply stable. This is excellent practise to get into when working with microcontrollers.
+Bridge your positive and ground power rails with your capacitor. The long leg or the capacitor goes on the positive side and the negative side is marked with a stripe on the capacitor body's casing. The reason you're doing this? Capacitors store energy and help prevent spikes and brown outs and this means such things have a much lower chance of damaging your chip. Think of it as a reservoir that fills up in the rainy season and releases what it has in times of drought to keep your water supply stable. This is excellent practise to get into when working with microcontrollers.
 
-The last thing we need to do is set our reset pin to HIGH. That just means it needs to have potential nearing whatever we're supplying to DVSS (which in my case is +3V). Attach a 1K resistor to your RESET pin and your positive rail. the reason we're using a resistor is that you should never have precisely zero components between your positive and ground, else you are causing a short circuit and you're probably going to blow your power supply up. You'll see this come up again in the next section. If the RESET pin ever drops to LOW connect it to ground) your chip will reset.
+The last thing we need to do is set our reset pin to HIGH. That just means it needs to have potential nearing whatever we're supplying to DVCC (which in my case is +3V). Attach a 1K resistor to your RESET pin and your positive rail. the reason we're using a resistor is that you should never have precisely zero components between your positive and ground, else you are causing a short circuit and you're probably going to blow your power supply up. You'll see this come up again in the next section. If the RESET pin ever drops to LOW connect it to ground) your chip will reset.
 
 If the RESET pin isn't connected up properly it is *floating*, which basicallu just means we don't know what's on there and can't rely upon the pin to stay stable at either HIGH or LOW. We don't want that on any pin that will be read from.
 
