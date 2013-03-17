@@ -103,7 +103,7 @@ First and foremost, I have provided you with a makefile. Let me now step you thr
 
 OK, so, time to take a proper look at this chip. If you didn't download the chip's data sheet in step 1 then [do so now](http://www.ti.com/product/msp430g2001). You may need a slightly different data sheet if you're using a different chip.
 
-Take your time to peruse this and pick up as much information as you can. What we're really interested in, though, is what's detailed on page 4 - information about the device's pins. To orientate your chip with this diagram, place the chip down with the notch/groove facing towards the top of the page. You will also notice that the pin numbering starts at the top-left and goes clockwise. We are interested only in the pin designations by port for now. Make a mental note of which pins the following ports are on:
+Take your time to peruse this and pick up as much information as you can. What we're really interested in, though, is what's detailed on page 4 - information about the device's pins. To orientate your chip with this diagram, place the chip down with the notch/groove facing towards the top of the page. You will also notice that the pin numbering starts at the top-left and goes anti-clockwise. We are interested only in the pin designations by port for now. Make a mental note of which pins the following ports are on:
 
     DVCC (This is connected to the negative side of our power supply)
     DVSS (This is connected to the positive side of our power supply)
