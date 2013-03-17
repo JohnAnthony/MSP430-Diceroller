@@ -50,10 +50,6 @@ Read "Make: Electronics" by Charles Platt (O'Reilly)
 
 Read "Managing Projects with GNU Make" (O'Reilly)
 
-#### Any other questions
-
-Please see the end of this document for an FAQ
-
 
 
 ## THE PROJECT:
