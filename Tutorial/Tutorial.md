@@ -135,7 +135,7 @@ The last thing we need to do is set our reset pin to HIGH. That just means it ne
 
 If the RESET pin isn't connected up properly it is *floating*, which basicallu just means we don't know what's on there and can't rely upon the pin to stay stable at either HIGH or LOW. We don't want that on any pin that will be read from.
 
-![Step 4 Picture]("step4.jpg")
+![Step 4 Picture](step4.jpg)
 
 ### Step 5: Add Your switch
 
@@ -143,7 +143,7 @@ In our software, we use P1.0 as the port we check to see if our switch is presse
 
 You always want a component between your positive and ground, so we're going to stuff in a resistor rather than just a wire. Use your 47K resistor to connect P1.0 to positive on the microcontroller side of your switch. Your switch will now pull P1.0 potential down LOW when pressed and P1.0 potential will go HIGH when the button isn't pressed. Hoorah!
 
-![Step 5 Picture]("step5.jpg")
+![Step 5 Picture](step5.jpg)
 
 ### Step 6: LEDs
 
@@ -151,12 +151,12 @@ Alright, we're almost done! The next thing to do is connect your 7 LEDs to the a
 
 The only trick to this step is all the wiring that needs to be done correctly, but it's really just repeating the same thing over and over. You also need to arrange your LEDs in an appropriate pattern to represent a dice face, which is also pretty easy:
 
-![LED Arrangement]("leds.png")
+![LED Arrangement](leds.png)
 
 And there you go! Connect your power supply to your positive and negative rails and press the button. You should see the thumper go around and when you release the button you should see an appropriate dice face.
 
 Congratulations! You just wired up your first microcontroller!
 
-![Final Picture]("final.jpg")
+![Final Picture](final.jpg)
 
 <br><br><br><center><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</center>
