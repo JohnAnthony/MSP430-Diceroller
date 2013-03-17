@@ -88,7 +88,7 @@ First and foremost, I have provided you with a makefile. Let me now step you thr
 
     $ msp430-gcc -o roller.o roller.c
 
-2) Compile all of your objects (just one in this case) into an appropriately formatted ELF file using msp430-gcc. be sure to change your target architecture if you're using a slightly different chip. yes, this is important because different chips use different offsets for locations of data within the elf file. This is the file we will be using on our chip and the compiling process really is as easy as just that.
+2) Compile all of your objects (just one in this case) into an appropriately formatted ELF file using msp430-gcc. Be sure to change your target architecture if you're using a slightly different chip. Yes, this is important because different chips use different offsets for locations of data within the ELF file. This is the file we will be using on our chip and the compiling process really is as easy as just that.
 
     $ msp430-gcc -mmcu=msp430g2211 -o roller.elf *.o
 
