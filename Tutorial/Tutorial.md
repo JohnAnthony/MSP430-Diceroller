@@ -1,5 +1,5 @@
 <link href="http://jo.hnanthony.com/markdown.css" rel="stylesheet"></link>
-# A $20 Introduction To Robotics For Programmers
+# A $20 Introduction To Electronics For Programmers (via the MSP430 Launchpad)
 
 
 ## INTRODUCTION:
@@ -18,10 +18,6 @@ I expect you to be able to install software from a repository or build a cross-c
 
 The language we will be using is C, which I consider to be the only sane choice for microcontroller programming, but you can use anything you like via GCC front-ends if you are insane. The program is almost trivially small (get used to this if you are working with microcontrollers) and I won't be covering anything "complex" such as interrupts, although I will recommend further reading that will allow you to become an excellent microcontroller programmer.
 
-
-## SOFTWARE
-
-I've provided everything you need in regards to software on my [github repository](
 
 ## HARDWARE:
 
@@ -84,6 +80,8 @@ You're going to need a bunch of software tools for your project. These are the D
 
 On top of this you will need some form of Make (I use GNU Make, like most people) and I provide a makefile along with the software of this project.
 
+I have provided a [complete project on github](https://github.com/JohnAnthony/MSP430-Diceroller) that is designed to help you understand the software side of things.
+
 ### Step 2: Getting Your Program On The Chip
 
 Alright, so, fire up your text editor and take a look at the code I wrote for this dice program. It's commented to all hell so should be pretty easy to follow. I'm assuming you're already a programmer, however, so that's not a primary concern for me. Lets get this code loaded up.
@@ -137,7 +135,7 @@ The last thing we need to do is set our reset pin to HIGH. That just means it ne
 
 If the RESET pin isn't connected up properly it is *floating*, which basicallu just means we don't know what's on there and can't rely upon the pin to stay stable at either HIGH or LOW. We don't want that on any pin that will be read from.
 
-TODO: Picture
+![Step 4 Picture]("step4.jpg")
 
 ### Step 5: Add Your switch
 
@@ -145,7 +143,7 @@ In our software, we use P1.0 as the port we check to see if our switch is presse
 
 You always want a component between your positive and ground, so we're going to stuff in a resistor rather than just a wire. Use your 47K resistor to connect P1.0 to positive on the microcontroller side of your switch. Your switch will now pull P1.0 potential down LOW when pressed and P1.0 potential will go HIGH when the button isn't pressed. Hoorah!
 
-TODO: Picture
+![Step 5 Picture]("step5.jpg")
 
 ### Step 6: LEDs
 
@@ -153,10 +151,12 @@ Alright, we're almost done! The next thing to do is connect your 7 LEDs to the a
 
 The only trick to this step is all the wiring that needs to be done correctly, but it's really just repeating the same thing over and over. You also need to arrange your LEDs in an appropriate pattern to represent a dice face, which is also pretty easy:
 
-TODO: Arrangement picture
+![LED Arrangement]("leds.png")
 
 And there you go! Connect your power supply to your positive and negative rails and press the button. You should see the thumper go around and when you release the button you should see an appropriate dice face.
 
 Congratulations! You just wired up your first microcontroller!
 
-TODO: Final picture
+![Final Picture]("final.jpg")
+
+<br><br><br><center><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</center>
