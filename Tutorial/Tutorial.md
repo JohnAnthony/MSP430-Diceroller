@@ -1,10 +1,3 @@
-<html>
-<head>
-    <title>A $20 Introduction To Electronics For Programmers (via the MSP430 Launchpad)</title>
-    <link href="http://jo.hnanthony.com/markdown.css" rel="stylesheet"></link>
-</head>
-<body>
-
 # A $20 Introduction To Electronics For Programmers (via the MSP430 Launchpad)
 
 
@@ -162,5 +155,3 @@ Congratulations! You just wired up your first microcontroller!
 ![Final Picture](final.jpg)
 
 <br><br><br><center><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</center>
-
-</body>
