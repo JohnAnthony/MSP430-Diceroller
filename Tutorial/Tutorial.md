@@ -129,7 +129,7 @@ Bridge your positive and ground power rails with your capacitor. The long leg or
 
 The last thing we need to do is set our reset pin to HIGH. That just means it needs to have potential nearing whatever we're supplying to DVCC (which in my case is +3V). Attach a 1K resistor to your RESET pin and your positive rail. the reason we're using a resistor is that you should never have precisely zero components between your positive and ground, else you are causing a short circuit and you're probably going to blow your power supply up. You'll see this come up again in the next section. If the RESET pin ever drops to LOW connect it to ground) your chip will reset.
 
-If the RESET pin isn't connected up properly it is *floating*, which basicallu just means we don't know what's on there and can't rely upon the pin to stay stable at either HIGH or LOW. We don't want that on any pin that will be read from.
+If the RESET pin isn't connected up properly it is *floating*, which basically just means we don't know what's on there and can't rely upon the pin to stay stable at either HIGH or LOW. We don't want that on any pin that will be read from.
 
 ![Step 4 Picture](step4.jpg)
 
