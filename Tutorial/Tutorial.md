@@ -1,6 +1,7 @@
+# A $20 Introduction To Electronics For Programmers (via the MSP430 Launchpad)
+
 <LINK REL=StyleSheet HREF="http://jo.hnanthony.com/markdown.css" TYPE="text/css" MEDIA=screen>
 
-# A $20 Introduction To Electronics For Programmers (via the MSP430 Launchpad)
 
 
 ## INTRODUCTION:
